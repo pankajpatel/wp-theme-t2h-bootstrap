@@ -10,10 +10,15 @@ jQuery(document).ready(function(e){
 	jQuery('pre,code').each(function(i, block) {
 		if($(block).attr('class').match('lang')){
 			var x = $(block).attr('class').split(' ')
-			console.log( x )
+			for (var i = x.length - 1; i >= 0; i--) {
+				if( x[i].split(':') == 'lang' ){
+					//
+				}
+			}
+			// console.log( x )
 		}
 		hljs.highlightBlock(block);
-		console.log(block)
+		// console.log(block)
 	});
 
 });
