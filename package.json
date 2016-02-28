@@ -1,0 +1,33 @@
+{
+  "name": "wp-theme-t2h-bootstrap",
+  "version": "0.0.1",
+  "description": "Time to Hack WordPress Theme based on bootstrap",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pankajpatel/wp-theme-t2h-bootstrap.git"
+  },
+  "keywords": [
+    "bootstrap",
+    "jQuery",
+    "wordpress",
+    "time2hack",
+    "t2h"
+  ],
+  "author": "Pankaj Patel <pankaj.patel@live.in>",
+  "license": "GPL-1.0",
+  "bugs": {
+    "url": "https://github.com/pankajpatel/wp-theme-t2h-bootstrap/issues"
+  },
+  "homepage": "https://github.com/pankajpatel/wp-theme-t2h-bootstrap#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.7",
+    "minimist": "^1.2.0",
+    "vinyl-ftp": "^0.4.5"
+  }
+}
