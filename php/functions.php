@@ -40,6 +40,7 @@ if ( ! function_exists( 't2h_scripts_styles' ) ) :
 		wp_enqueue_style( 'font-awesome', "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", array(), '4.5.0' );
 		wp_enqueue_style( 'open-sans', 'https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,700,600', array(), '1.0' );
 		wp_enqueue_style( 'highlightjs', "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/default.min.css", array(), '9.2.0' );
+		wp_enqueue_style( 'highlightjs-theme', "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/monokai-sublime.min.css", array(), '9.2.0' );
 
 		// Loads our main stylesheet.
 		wp_enqueue_style( 't2h-style', get_stylesheet_uri(), array('bootstrap'), '2013-07-18' );
@@ -87,13 +88,17 @@ function has_code_sample(){
 	$custom = get_post_custom($post->ID);
 	$has_code = $custom["has_code"][0];
 	$has_sample = $custom["has_sample"][0];
+	$code_link = $custom["code_link"][0];
+	$sample_link = $custom["sample_link"][0];
 	?>
 	<label>Has Code:</label>&nbsp;&nbsp;
 	<input type="radio" name="has_code" value="Yes"<?php if($has_code == 'Yes') echo 'checked="checked"'; ?> />&nbsp;Yes&nbsp;&nbsp;
 	<input type="radio" name="has_code" value="No" <?php if($has_code == 'No') echo 'checked="checked"'; ?>/>&nbsp;No<br/>
+	<div><input type="text" name="code_link" value="<?php echo $code_link; ?>" style="display: block;"></div>
 	<label>Provides Sample:</label>&nbsp;&nbsp;
 	<input type="radio" name="has_sample" value="Yes"<?php if($has_sample == 'Yes') echo 'checked="checked"'; ?> />&nbsp;Yes&nbsp;&nbsp;
 	<input type="radio" name="has_sample" value="No" <?php if($has_sample == 'No') echo 'checked="checked"'; ?>/>&nbsp;No
+	<div><input type="text" name="sample_link" value="<?php echo $sample_link; ?>" style="display: block;"></div>
 	<?php
 }
 
@@ -113,8 +118,34 @@ function save_details(){
 
 	update_post_meta($post->ID, "has_code", $_POST["has_code"]);
 	update_post_meta($post->ID, "has_sample", $_POST["has_sample"]);
+	update_post_meta($post->ID, "sample_link", $_POST["sample_link"]);
+	update_post_meta($post->ID, "code_link", $_POST["code_link"]);
 	
 }
+
+
+add_filter('the_content', 'add_my_content');
+function add_my_content($content) {
+	$demo_box = '';
+	// $custom = get_post_custom($post->ID);
+	$code_link = get_post_meta( get_the_ID(), 'code_link', true );
+	$sample_link = get_post_meta( get_the_ID(), 'sample_link', true );
+
+	$demo_box .= '<div class="demo-and-download">
+		<!-- Demo and Download Link -->';
+		if( $code_link != '' ){
+			$demo_box .= '<a href="'. $code_link .'" target="_blank" class="btn btn-primary">Demo</a>';
+		} if( $sample_link != '' ){ 
+			$demo_box .= '<a href="'. $sample_link .'" target="_blank" class="btn btn-primary">Download</a>';
+		}
+	$demo_box .= '</div>';
+
+	if(is_single() && !is_home()) {
+		$content .= $demo_box;
+	}
+	return $content;
+}
+
 
 
 /**

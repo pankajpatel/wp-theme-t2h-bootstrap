@@ -32,28 +32,28 @@
 				<i class="fa fa-user"></i>&nbsp;
 				<a href="#author"><?php the_author_link(); ?></a>
 			</span>
-			<?php 
+<?php 
 			$hasCode = get_post_meta( get_the_ID(), 'has_code', true );
 			$hasSample = get_post_meta( get_the_ID(), 'has_sample', true );
 			// check if the custom field has a value
 			if( ! empty( $hasCode) && $hasCode == 'Yes' ) {
-			?>
+?>
 			<span class="post-meta">
 				<abbr title="This post has code"><i class="fa fa-code"></i></abbr>
 			</span>
-			<?php
+<?php
 			} 
 
 			if( ! empty( $hasSample)  && $hasSample == 'Yes') {
-			?>
+?>
 			<span class="post-meta">
 				<abbr title="Provides Downloadable Code Sample">
 					<i class="fa fa-cloud-download"></i>
 				</abbr>
 			</span>
-			<?php
+<?php
 			}
-			?>
+?>
 			<span class="post-meta">
 				<i class="fa fa-comments"></i>&nbsp;<span class="badge"><a href="<?php comments_link(); ?>"><?php comments_number( 'No Responses', 'One Response', '% Responses' ); ?></a></span>
 			</span>
@@ -66,15 +66,14 @@
 				<?php the_category( ' &bull; ' ); ?>
 			</span>
 			
-			<?php
+<?php
 			if( !is_page() && is_single()){ 
 				edit_post_link( __( 'Edit', 't2h' ), '<span class="post-meta edit-link"><i class="fa fa-pencil"></i>&nbsp;', '</span>' );
 			} 
-			?>
+?>
 			</p>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
-	
 
 	<?php if ( is_search() ) : // Only display Excerpts for Search ?>
 	<div class="entry-summary">
@@ -102,18 +101,13 @@
 		</p>
 		<?php
 		} ?>
-<div class="clearfix">
-<h5 class="share-on-title">Share On</h5>
-<a class="share-on-link share-on-twitter" target="_blank" href="https://twitter.com/intent/tweet?text=<?php echo the_title(); ?>&url=<?php echo get_permalink(); ?>&via=time2hack">Twitter</a>
-
-<a class="share-on-link share-on-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink(); ?>">Facebook</a>
-
-<a class="share-on-link share-on-googleplus" target="_blank" href="https://plus.google.com/share?url=<?php echo get_permalink(); ?>">Google+</a>
-
-
-<a class="share-on-link share-on-linkedin" target="_blank" href="https://www.linkedin.com/cws/share?url=<?php echo get_permalink(); ?>&original_referer=<?php echo get_permalink(); ?>&token=&isFramed=false&lang=en_US','winLinkedIn');">LinkedIn</a>
-
-</div>
+		<div class="clearfix">
+			<h5 class="share-on-title">Share On</h5>
+			<a class="share-on-link share-on-twitter" target="_blank" href="https://twitter.com/intent/tweet?text=<?php echo the_title(); ?>&url=<?php echo get_permalink(); ?>&via=time2hack">Twitter</a>
+			<a class="share-on-link share-on-facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo get_permalink(); ?>">Facebook</a>
+			<a class="share-on-link share-on-googleplus" target="_blank" href="https://plus.google.com/share?url=<?php echo get_permalink(); ?>">Google+</a>
+			<a class="share-on-link share-on-linkedin" target="_blank" href="https://www.linkedin.com/cws/share?url=<?php echo get_permalink(); ?>&original_referer=<?php echo get_permalink(); ?>&token=&isFramed=false&lang=en_US','winLinkedIn');">LinkedIn</a>
+		</div>
 		<?php
  		if ( comments_open() && ! is_single() ) : ?>
 		<div class="comments-link">
